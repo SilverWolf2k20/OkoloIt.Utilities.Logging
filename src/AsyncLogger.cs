@@ -14,7 +14,7 @@ namespace OkoloIt.Utilities.Logging
         /// </summary>
         /// <param name="configurations">Конфигурация логера.</param>
         /// <param name="action">Метод для вывода сообщения.</param>
-        internal AsyncLogger(LoggerConfigurations configurations, Action<string>? action)
+        internal AsyncLogger(LoggerConfiguration configurations, Action<string>? action)
             : base(configurations, action)
         {
         }

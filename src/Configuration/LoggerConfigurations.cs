@@ -3,7 +3,7 @@
     /// <summary>
     /// Конфигурация логера.
     /// </summary>
-    public class LoggerConfigurations
+    public class LoggerConfiguration
     {
         /// <summary>
         /// Путь вывода.

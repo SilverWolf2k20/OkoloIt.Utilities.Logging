@@ -14,7 +14,7 @@ namespace OkoloIt.Utilities.Logging
         /// <summary>
         /// Конфигурация логера.
         /// </summary>
-        protected LoggerConfigurations _configurations;
+        protected LoggerConfiguration _configurations;
         protected Action<string>? _action;
 
         #endregion Protected Fields
@@ -32,7 +32,7 @@ namespace OkoloIt.Utilities.Logging
         /// </summary>
         /// <param name="configurations">Конфигурация логера.</param>
         /// <param name="action">Метод для вывода сообщения.</param>
-        internal LoggerBase(LoggerConfigurations configurations, Action<string>? action)
+        internal LoggerBase(LoggerConfiguration configurations, Action<string>? action)
         {
             _configurations = configurations;
             _action = action;
