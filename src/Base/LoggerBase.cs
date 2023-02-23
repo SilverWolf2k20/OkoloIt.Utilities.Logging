@@ -130,8 +130,6 @@ namespace OkoloIt.Utilities.Logging
         /// <param name="message">Сообщение.</param>
         protected virtual void WriteInConsole(LogLevel level, string tag, string message)
         {
-            Thread.Sleep(250);
-
             Console.ForegroundColor = LevelToColorConverter(level);
             Console.Write($"[{tag}]");
             Console.ResetColor();
