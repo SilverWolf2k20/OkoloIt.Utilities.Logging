@@ -26,7 +26,7 @@
         public void Fatal(string message);
 
         /// <summary>
-        /// Выводит информативное сообщение.
+        /// Выводит информационное сообщение.
         /// </summary>
         /// <param name="message">Текст сообщения.</param>
         public void Info(string message);
