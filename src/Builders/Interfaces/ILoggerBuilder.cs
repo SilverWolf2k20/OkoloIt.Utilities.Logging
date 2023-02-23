@@ -16,6 +16,15 @@ namespace OkoloIt.Utilities.Logging
         public ILogger Build();
 
         /// <summary>
+        /// Устанавливает конфигурацию для логера.
+        /// </summary>
+        /// <param name="configuration">Конфигурация логера.</param>
+        /// <returns>
+        /// Экземпляр строителя, наследуемого от <see cref="ILoggerBuilder"/>.
+        /// </returns>
+        public ILoggerBuilder SetConfiguration(LoggerConfiguration configuration);
+
+        /// <summary>
         /// Устанавливает минимальный уровень логирования.
         /// </summary>
         /// <param name="level">Минимальный уровень логирования.</param>

@@ -9,7 +9,7 @@ namespace OkoloIt.Utilities.Logging
     {
         #region Private Fields
 
-        private readonly LoggerConfigurations _configuration = new();
+        private LoggerConfiguration _configuration = new();
         private Action<string>? _action;
 
         #endregion Private Fields
@@ -35,6 +35,19 @@ namespace OkoloIt.Utilities.Logging
         }
 
         /// <summary>
+        /// Устанавливает конфигурацию для логера.
+        /// </summary>
+        /// <param name="configuration">Конфигурация логера.</param>
+        /// <returns>
+        /// Экземпляр строителя, наследуемого от <see cref="ILoggerBuilder"/>.
+        /// </returns>
+        public ILoggerBuilder SetConfiguration(LoggerConfiguration configuration)
+        {
+            _configuration = configuration;
+            return this;
+        }
+
+        /// <summary>
         /// Устанавливает минимальный уровень логирования.
         /// </summary>
         /// <param name="level">Минимальный уровень логирования.</param>
@@ -46,7 +59,6 @@ namespace OkoloIt.Utilities.Logging
             _configuration.MinimalLevel = level;
             return this;
         }
-
 
         /// <summary>
         /// Устанавливает формат вывода сообщений.
