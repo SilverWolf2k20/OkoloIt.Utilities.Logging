@@ -21,10 +21,16 @@ namespace OkoloIt.Utilities.Logging
         /// <returns>Созданный логер.</returns>
         public ILogger Build()
         {
-            if (_configuration.UseAsyncWrite)
-                return new AsyncLogger(_configuration);
+            ILogger logger;
 
-            return new Logger(_configuration);
+            if (_configuration.UseAsyncWrite)
+                logger = new AsyncLogger(_configuration);
+            else
+                logger = new Logger(_configuration);
+
+            LoggerManager.SetLogger(logger);
+
+            return logger;
         }
 
         /// <summary>
