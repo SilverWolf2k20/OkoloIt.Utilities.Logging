@@ -6,9 +6,9 @@
     public class LoggerConfigurations
     {
         /// <summary>
-        /// Запись в консоль.
+        /// Путь вывода.
         /// </summary>
-        public bool InConsole { get; set; } = default;
+        public OutputType Output { get; set; } = default;
 
         /// <summary>
         /// Использовать асинхронную запись.

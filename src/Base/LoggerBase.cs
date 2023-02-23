@@ -1,4 +1,6 @@
-﻿using OkoloIt.Utilities.Logging.Configuration;
+﻿using System.Diagnostics;
+
+using OkoloIt.Utilities.Logging.Configuration;
 
 namespace OkoloIt.Utilities.Logging
 {
@@ -13,6 +15,7 @@ namespace OkoloIt.Utilities.Logging
         /// Конфигурация логера.
         /// </summary>
         protected LoggerConfigurations _configurations;
+        protected Action<string>? _action;
 
         #endregion Protected Fields
 
@@ -28,8 +31,12 @@ namespace OkoloIt.Utilities.Logging
         /// Создает экземпляр базового класса логера.
         /// </summary>
         /// <param name="configurations">Конфигурация логера.</param>
-        internal LoggerBase(LoggerConfigurations configurations)
-            => _configurations = configurations;
+        /// <param name="action">Метод для вывода сообщения.</param>
+        internal LoggerBase(LoggerConfigurations configurations, Action<string>? action)
+        {
+            _configurations = configurations;
+            _action = action;
+        }
 
         #endregion Protected Constructors
 
@@ -96,14 +103,21 @@ namespace OkoloIt.Utilities.Logging
 
                 string tag = LevelToStringConverter(level);
 
-                if (_configurations.InConsole == true) {
-                    WriteInConsole(level, tag, message);
-                    return;
-                }
-
-                if (_configurations.InConsole == false) {
-                    WriteInFile(tag, message);
-                    return;
+                switch (_configurations.Output) {
+                    case OutputType.Console:
+                        WriteInConsole(level, tag, message);
+                        return;
+                    case OutputType.File:
+                        WriteInFile(tag, message);
+                        return;
+                    case OutputType.System:
+                        WriteInSystemTrace(tag, message);
+                        return;
+                    case OutputType.Custom:
+                        WriteInCustomMethod(tag, message);
+                        return;
+                    default:
+                        throw new NotImplementedException("Нет доступного метода для вывода сообщения.");
                 }
             }
         }
@@ -125,13 +139,31 @@ namespace OkoloIt.Utilities.Logging
         }
 
         /// <summary>
+        /// Записывает сообщение в пользовательский метод.
+        /// </summary>
+        /// <param name="tag">Тэг лога.</param>
+        /// <param name="message">Сообщение.</param>
+        protected virtual void WriteInCustomMethod(string tag, string message)
+            => _action?.Invoke($"[{tag}]: {message}");
+
+        /// <summary>
         /// Записывает сообщение в файл.
         /// </summary>
         /// <param name="tag">Тэг лога.</param>
         /// <param name="message">Сообщение.</param>
         protected virtual void WriteInFile(string tag, string message)
         {
+            using var writer = new StreamWriter(_configurations.FileName, true);
+            writer.WriteLineAsync($"[{tag}]: {message}");
         }
+
+        /// <summary>
+        /// Записывает сообщение в системную консоль.
+        /// </summary>
+        /// <param name="tag">Тэг лога.</param>
+        /// <param name="message">Сообщение.</param>
+        protected virtual void WriteInSystemTrace(string tag, string message)
+            => Trace.WriteLine($"[{tag}]: {message}");
 
         #endregion Protected Methods
     }

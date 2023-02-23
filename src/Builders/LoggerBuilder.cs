@@ -10,6 +10,7 @@ namespace OkoloIt.Utilities.Logging
         #region Private Fields
 
         private readonly LoggerConfigurations _configuration = new();
+        private Action<string>? _action;
 
         #endregion Private Fields
 
@@ -24,9 +25,9 @@ namespace OkoloIt.Utilities.Logging
             ILogger logger;
 
             if (_configuration.UseAsyncWrite)
-                logger = new AsyncLogger(_configuration);
+                logger = new AsyncLogger(_configuration, _action);
             else
-                logger = new Logger(_configuration);
+                logger = new Logger(_configuration, _action);
 
             LoggerManager.SetLogger(logger);
 
@@ -42,6 +43,7 @@ namespace OkoloIt.Utilities.Logging
         /// </returns>
         public ILoggerBuilder SetMinimalLevel(LogLevel level)
         {
+            _configuration.MinimalLevel = level;
             return this;
         }
 
@@ -77,7 +79,21 @@ namespace OkoloIt.Utilities.Logging
         /// </returns>
         public ILoggerBuilder WriteToConsole()
         {
-            _configuration.InConsole = true;
+            _configuration.Output = OutputType.Console;
+            return this;
+        }
+
+        /// <summary>
+        /// Устанавливает вывод сообщений в метод.
+        /// </summary>
+        /// <param name="action">Метод записи сообщений.</param>
+        /// <returns>
+        /// Экземпляр строителя, наследуемого от <see cref="ILoggerBuilder"/>.
+        /// </returns>
+        public ILoggerBuilder WriteToCustom(Action<string> action)
+        {
+            _configuration.Output = OutputType.Custom;
+            _action = action;
             return this;
         }
 
@@ -89,8 +105,23 @@ namespace OkoloIt.Utilities.Logging
         /// </returns>
         public ILoggerBuilder WriteToFile(string fileName)
         {
-            _configuration.FileName  = fileName;
-            _configuration.InConsole = false;
+            _configuration.Output = OutputType.File;
+
+            if (string.IsNullOrEmpty(fileName) == false)
+                _configuration.FileName  = fileName;
+
+            return this;
+        }
+
+        /// <summary>
+        /// Устанавливает вывод сообщений в системную консоль.
+        /// </summary>
+        /// <returns>
+        /// Экземпляр строителя, наследуемого от <see cref="ILoggerBuilder"/>.
+        /// </returns>
+        public ILoggerBuilder WriteToSystemTrace()
+        {
+            _configuration.Output = OutputType.System;
             return this;
         }
 
