@@ -13,8 +13,9 @@ namespace OkoloIt.Utilities.Logging
         /// Создает экземпляр синхронного логера.
         /// </summary>
         /// <param name="configurations">Конфигурация логера.</param>
-        internal Logger(LoggerConfigurations configurations)
-            : base(configurations)
+        /// <param name="action">Метод для вывода сообщения.</param>
+        internal Logger(LoggerConfigurations configurations, Action<string>? action)
+            : base(configurations, action)
         {
         }
 

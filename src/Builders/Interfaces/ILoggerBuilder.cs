@@ -49,12 +49,29 @@ namespace OkoloIt.Utilities.Logging
         public ILoggerBuilder WriteToConsole();
 
         /// <summary>
+        /// Устанавливает вывод сообщений в метод.
+        /// </summary>
+        /// <param name="action">Метод записи сообщений.</param>
+        /// <returns>
+        /// Экземпляр строителя, наследуемого от <see cref="ILoggerBuilder"/>.
+        /// </returns>
+        public ILoggerBuilder WriteToCustom(Action<string> action);
+
+        /// <summary>
         /// Устанавливает вывод сообщений в файл.
         /// </summary>
         /// <returns>
         /// Экземпляр строителя, наследуемого от <see cref="ILoggerBuilder"/>.
         /// </returns>
-        public ILoggerBuilder WriteToFile(string fileName);
+        public ILoggerBuilder WriteToFile(string fileName = "");
+
+        /// <summary>
+        /// Устанавливает вывод сообщений в системную консоль.
+        /// </summary>
+        /// <returns>
+        /// Экземпляр строителя, наследуемого от <see cref="ILoggerBuilder"/>.
+        /// </returns>
+        public ILoggerBuilder WriteToSystemTrace();
 
         #endregion Public Methods
     }
