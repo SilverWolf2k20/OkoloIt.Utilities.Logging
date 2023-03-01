@@ -91,11 +91,19 @@ namespace OkoloIt.Utilities.Logging
             };
 
         /// <summary>
+        /// Записывает сообщение режима отладки.
+        /// </summary>
+        /// <param name="message">Сообщение лога.</param>
+        [Conditional("DEBUG")]
+        protected virtual void WriteDebugMessage(string message)
+            => WriteMessage(LogLevel.Debug, message);
+
+        /// <summary>
         /// Записывает сообщение.
         /// </summary>
         /// <param name="level">Уровень лога.</param>
         /// <param name="message">Сообщение лога.</param>
-        protected virtual void Write(LogLevel level, string message)
+        protected virtual void WriteMessage(LogLevel level, string message)
         {
             lock (_locker) {
                 if (IsVisibleMessage(level) == false)

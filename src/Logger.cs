@@ -28,46 +28,42 @@ namespace OkoloIt.Utilities.Logging
         /// </summary>
         /// <param name="message">Текст сообщения.</param>
         public void Debug(string message)
-        {
-#if DEBUG
-            Write(LogLevel.Debug, message);
-#endif
-        }
+            => WriteDebugMessage(message);
 
         /// <summary>
         /// Выводит сообщение ошибки.
         /// </summary>
         /// <param name="message">Текст сообщения.</param>
         public void Error(string message)
-            => Write(LogLevel.Error, message);
+            => WriteMessage(LogLevel.Error, message);
 
         /// <summary>
         /// Выводит сообщение критической ошибки.
         /// </summary>
         /// <param name="message">Текст сообщения.</param>
         public void Fatal(string message)
-            => Write(LogLevel.Fatal, message);
+            => WriteMessage(LogLevel.Fatal, message);
 
         /// <summary>
         /// Выводит информационное сообщение.
         /// </summary>
         /// <param name="message">Текст сообщения.</param>
         public void Info(string message)
-            => Write(LogLevel.Info, message);
+            => WriteMessage(LogLevel.Info, message);
 
         /// <summary>
         /// Выводит сообщение.
         /// </summary>
         /// <param name="message">Текст сообщения.</param>
         public void Trace(string message)
-            => Write(LogLevel.Trace, message);
+            => WriteMessage(LogLevel.Trace, message);
 
         /// <summary>
         /// Выводит сообщение о не штатном поведении.
         /// </summary>
         /// <param name="message">Текст сообщения.</param>
         public void Warn(string message)
-            => Write(LogLevel.Warn, message);
+            => WriteMessage(LogLevel.Warn, message);
 
         #endregion Public Methods
     }
