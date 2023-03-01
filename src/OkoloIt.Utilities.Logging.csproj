@@ -4,6 +4,14 @@
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <Company>Okolo IT</Company>
+    <Authors>Okolo IT</Authors>
+    <Version>1.0.0</Version>
+    <FileVersion>1.0.0.0</FileVersion>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <Description>Records events by means of messages of different levels.</Description>
+    <AssemblyName>OkoloIt.Utilities.Logging</AssemblyName>
+    <PackageTags>Logging;Log;Logger</PackageTags>
   </PropertyGroup>
 
 </Project>

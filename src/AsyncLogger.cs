@@ -28,53 +28,52 @@ namespace OkoloIt.Utilities.Logging
         /// </summary>
         /// <param name="message">Текст сообщения.</param>
         public async void Debug(string message)
-        {
-#if DEBUG
-            await WriteAsync(LogLevel.Debug, message);
-#endif
-        }
+            => await WriteDebugMessageAsync(message);
 
         /// <summary>
         /// Асинхронно выводит сообщение ошибки.
         /// </summary>
         /// <param name="message">Текст сообщения.</param>
         public async void Error(string message)
-            => await WriteAsync(LogLevel.Error, message);
+            => await WriteMessageAsync(LogLevel.Error, message);
 
         /// <summary>
         /// Асинхронно выводит сообщение критической ошибки.
         /// </summary>
         /// <param name="message">Текст сообщения.</param>
         public async void Fatal(string message)
-            => await WriteAsync(LogLevel.Fatal, message);
+            => await WriteMessageAsync(LogLevel.Fatal, message);
 
         /// <summary>
         /// Асинхронно выводит информационное сообщение.
         /// </summary>
         /// <param name="message">Текст сообщения.</param>
         public async void Info(string message)
-            => await WriteAsync(LogLevel.Info, message);
+            => await WriteMessageAsync(LogLevel.Info, message);
 
         /// <summary>
         /// Асинхронно выводит сообщение.
         /// </summary>
         /// <param name="message">Текст сообщения.</param>
         public async void Trace(string message)
-            => await WriteAsync(LogLevel.Trace, message);
+            => await WriteMessageAsync(LogLevel.Trace, message);
 
         /// <summary>
         /// Асинхронно выводит сообщение о не штатном поведении.
         /// </summary>
         /// <param name="message">Текст сообщения.</param>
         public async void Warn(string message)
-            => await WriteAsync(LogLevel.Warn, message);
+            => await WriteMessageAsync(LogLevel.Warn, message);
 
         #endregion Public Methods
 
         #region Private Methods
 
-        private async Task WriteAsync(LogLevel level, string message)
-            => await Task.Run(() => Write(level, message));
+        private async Task WriteMessageAsync(LogLevel level, string message)
+            => await Task.Run(() => WriteMessage(level, message));
+
+        private async Task WriteDebugMessageAsync(string message)
+            => await Task.Run(() => WriteDebugMessage(message));
 
         #endregion Private Methods
     }
