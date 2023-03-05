@@ -83,20 +83,12 @@ namespace OkoloIt.Utilities.Logging
             => level switch {
                 LogLevel.Trace => "TRACE",
                 LogLevel.Debug => "DEBUG",
-                LogLevel.Info => "INFO",
-                LogLevel.Warn => "WARN",
+                LogLevel.Info  => "INFO",
+                LogLevel.Warn  => "WARN",
                 LogLevel.Error => "ERROR",
                 LogLevel.Fatal => "FATAL",
                 _ => "NONE:",
             };
-
-        /// <summary>
-        /// Записывает сообщение режима отладки.
-        /// </summary>
-        /// <param name="message">Сообщение лога.</param>
-        [Conditional("DEBUG")]
-        protected virtual void WriteDebugMessage(string message)
-            => WriteMessage(LogLevel.Debug, message);
 
         /// <summary>
         /// Записывает сообщение.
@@ -139,7 +131,7 @@ namespace OkoloIt.Utilities.Logging
         protected virtual void WriteInConsole(LogLevel level, string tag, string message)
         {
             Console.ForegroundColor = LevelToColorConverter(level);
-            Console.Write($"[{tag}]");
+            Console.Write($"[{tag, -5}]");
             Console.ResetColor();
             Console.WriteLine($": {message}");
         }
@@ -150,7 +142,7 @@ namespace OkoloIt.Utilities.Logging
         /// <param name="tag">Тэг лога.</param>
         /// <param name="message">Сообщение.</param>
         protected virtual void WriteInCustomMethod(string tag, string message)
-            => _action?.Invoke($"[{tag}]: {message}");
+            => _action?.Invoke(BuildMessage(tag, message));
 
         /// <summary>
         /// Записывает сообщение в файл.
@@ -160,7 +152,7 @@ namespace OkoloIt.Utilities.Logging
         protected virtual void WriteInFile(string tag, string message)
         {
             using var writer = new StreamWriter(_configurations.FileName, true);
-            writer.WriteLineAsync($"[{tag}]: {message}");
+            writer.WriteLineAsync(BuildMessage(tag, message));
         }
 
         /// <summary>
@@ -169,8 +161,15 @@ namespace OkoloIt.Utilities.Logging
         /// <param name="tag">Тэг лога.</param>
         /// <param name="message">Сообщение.</param>
         protected virtual void WriteInSystemTrace(string tag, string message)
-            => Trace.WriteLine($"[{tag}]: {message}");
+            => Trace.WriteLine(BuildMessage(tag, message));
 
         #endregion Protected Methods
+
+        #region Private Methods
+
+        private static string BuildMessage(string tag, string message)
+            => $"[{tag,-5}]: {message}";
+
+        #endregion Private Methods
     }
 }

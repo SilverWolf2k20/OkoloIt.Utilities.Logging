@@ -28,7 +28,7 @@ namespace OkoloIt.Utilities.Logging
         /// </summary>
         /// <param name="message">Текст сообщения.</param>
         public async void Debug(string message)
-            => await WriteDebugMessageAsync(message);
+            => await WriteMessageAsync(LogLevel.Debug, message);
 
         /// <summary>
         /// Асинхронно выводит сообщение ошибки.
@@ -71,9 +71,6 @@ namespace OkoloIt.Utilities.Logging
 
         private async Task WriteMessageAsync(LogLevel level, string message)
             => await Task.Run(() => WriteMessage(level, message));
-
-        private async Task WriteDebugMessageAsync(string message)
-            => await Task.Run(() => WriteDebugMessage(message));
 
         #endregion Private Methods
     }
