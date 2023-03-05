@@ -28,7 +28,7 @@ namespace OkoloIt.Utilities.Logging
         /// </summary>
         /// <param name="message">Текст сообщения.</param>
         public void Debug(string message)
-            => WriteDebugMessage(message);
+            => WriteMessage(LogLevel.Debug, message);
 
         /// <summary>
         /// Выводит сообщение ошибки.
