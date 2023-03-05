@@ -6,32 +6,32 @@
 ![alt text](https://github.com/open-telemetry/opentelemetry-dotnet/actions/workflows/windows-ci.yml/badge.svg?branch=main)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/SilverWolf2k20/OkoloIt.Utilities.Logging/blob/master/LICENSE.md)
 
-**OkoloIt.Utilities.Logging это библиотека реализующая функционал логгера с возможностью записи логов в консоль, файл и системную консоль**
+**OkoloIt.Utilities.Logging СЌС‚Рѕ Р±РёР±Р»РёРѕС‚РµРєР° СЂРµР°Р»РёР·СѓСЋС‰Р°СЏ С„СѓРЅРєС†РёРѕРЅР°Р» Р»РѕРіРіРµСЂР° СЃ РІРѕР·РјРѕР¶РЅРѕСЃС‚СЊСЋ Р·Р°РїРёСЃРё Р»РѕРіРѕРІ РІ РєРѕРЅСЃРѕР»СЊ, С„Р°Р№Р» Рё СЃРёСЃС‚РµРјРЅСѓСЋ РєРѕРЅСЃРѕР»СЊ**
 
-# Поддерживаемые версии .NET
+# РџРѕРґРґРµСЂР¶РёРІР°РµРјС‹Рµ РІРµСЂСЃРёРё .NET
 
-Данное программное обеспечение работает на .NET core версии 6.
+Р”Р°РЅРЅРѕРµ РїСЂРѕРіСЂР°РјРјРЅРѕРµ РѕР±РµСЃРїРµС‡РµРЅРёРµ СЂР°Р±РѕС‚Р°РµС‚ РЅР° .NET core РІРµСЂСЃРёРё 6.
 
-## Установка
+## РЈСЃС‚Р°РЅРѕРІРєР°
 
-Установка OkoloIt.Utilities.Logging через NuGet:
+РЈСЃС‚Р°РЅРѕРІРєР° OkoloIt.Utilities.Logging С‡РµСЂРµР· NuGet:
 
 ```
 Install-Package OkoloIt.Utilities.Logging
 ```
 
-## Пример использования
+## РџСЂРёРјРµСЂ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёСЏ
 
-- Пример использования бибилиотеки можно увидеть [здесь](https://github.com/SilverWolf2k20/OkoloIt.Utilities.Result/tree/master/samples/OkoloIt.Utilities.Logging.Samples).
+- РџСЂРёРјРµСЂ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёСЏ Р±РёР±РёР»РёРѕС‚РµРєРё РјРѕР¶РЅРѕ СѓРІРёРґРµС‚СЊ [Р·РґРµСЃСЊ](https://github.com/SilverWolf2k20/OkoloIt.Utilities.Result/tree/master/samples/OkoloIt.Utilities.Logging.Samples).
 
-## История выпусков
+## РСЃС‚РѕСЂРёСЏ РІС‹РїСѓСЃРєРѕРІ
 
 05.03.2023 - v 1.0.0
 
-## Авторы
+## РђРІС‚РѕСЂС‹
 
 [Okolo IT](https://vk.com/okolo_it_govnokoding)
 
-## Лицензия
->Вы можете ознакомиться с полной лицензией [здесь](https://github.com/SilverWolf2k20/OkoloIt.Utilities.Logging/blob/master/LICENSE.md)
-Этот проект находится под лицензией **MIT**.
+## Р›РёС†РµРЅР·РёСЏ
+>Р’С‹ РјРѕР¶РµС‚Рµ РѕР·РЅР°РєРѕРјРёС‚СЊСЃСЏ СЃ РїРѕР»РЅРѕР№ Р»РёС†РµРЅР·РёРµР№ [Р·РґРµСЃСЊ](https://github.com/SilverWolf2k20/OkoloIt.Utilities.Logging/blob/master/LICENSE.md)
+Р­С‚РѕС‚ РїСЂРѕРµРєС‚ РЅР°С…РѕРґРёС‚СЃСЏ РїРѕРґ Р»РёС†РµРЅР·РёРµР№ **MIT**.
