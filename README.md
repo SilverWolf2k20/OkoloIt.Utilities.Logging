@@ -1,12 +1,12 @@
 # OkoloIt.Utilities.Logging
 
-![coverage](https://img.shields.io/badge/version-1.0.0-blue)
+![coverage](https://img.shields.io/badge/version-2.0.0-blue)
 ![coverage](https://img.shields.io/badge/-Okolo%20IT-orange)
 ![alt text](https://github.com/open-telemetry/opentelemetry-dotnet/actions/workflows/linux-ci.yml/badge.svg?branch=main)
 ![alt text](https://github.com/open-telemetry/opentelemetry-dotnet/actions/workflows/windows-ci.yml/badge.svg?branch=main)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/SilverWolf2k20/OkoloIt.Utilities.Logging/blob/master/LICENSE.md)
 
-**OkoloIt.Utilities.Logging это библиотека реализующая функционал логгера с возможностью записи логов в консоль, файл и системную консоль**
+**OkoloIt.Utilities.Logging это библиотека реализующая функционал логера с возможностью записи логов в консоль, файл и системную консоль**
 
 # Поддерживаемые версии .NET
 
@@ -26,7 +26,8 @@ Install-Package OkoloIt.Utilities.Logging
 
 ## История выпусков
 
-05.03.2023 - v 1.0.0
+2023-03-05 - 1.0.0
+2023-04-22 - 2.0.0
 
 ## Авторы
 
