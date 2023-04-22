@@ -1,43 +1,42 @@
-﻿namespace OkoloIt.Utilities.Logging.Configuration
+﻿namespace OkoloIt.Utilities.Logging.Configuration;
+
+/// <summary>
+/// Уровни логов.
+/// </summary>
+public enum LogLevel : byte
 {
     /// <summary>
-    /// Уровни логов.
+    /// Трасировка.
     /// </summary>
-    public enum LogLevel : byte
-    {
-        /// <summary>
-        /// Трасировка.
-        /// </summary>
-        Trace,
+    Trace,
 
-        /// <summary>
-        /// Отладка.
-        /// </summary>
-        Debug,
+    /// <summary>
+    /// Отладка.
+    /// </summary>
+    Debug,
 
-        /// <summary>
-        /// Информация.
-        /// </summary>
-        Info,
+    /// <summary>
+    /// Информация.
+    /// </summary>
+    Info,
 
-        /// <summary>
-        /// Предумпреждение.
-        /// </summary>
-        Warn,
+    /// <summary>
+    /// Предумпреждение.
+    /// </summary>
+    Warn,
 
-        /// <summary>
-        /// Ошибка.
-        /// </summary>
-        Error,
+    /// <summary>
+    /// Ошибка.
+    /// </summary>
+    Error,
 
-        /// <summary>
-        /// Критическая ошибка.
-        /// </summary>
-        Fatal,
+    /// <summary>
+    /// Критическая ошибка.
+    /// </summary>
+    Fatal,
 
-        /// <summary>
-        /// Отключено.
-        /// </summary>
-        Off,
-    }
+    /// <summary>
+    /// Отключено.
+    /// </summary>
+    Off,
 }

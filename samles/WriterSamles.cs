@@ -1,28 +1,27 @@
-﻿namespace OkoloIt.Utilities.Logging.Samples
+﻿namespace OkoloIt.Utilities.Logging.Samples;
+
+/// <summary>
+/// Интерфейс примера записывателя.
+/// </summary>
+internal abstract class WriterSample
 {
     /// <summary>
-    /// Интерфейс примера записывателя.
+    /// Иницифлизирует логер.
     /// </summary>
-    internal abstract class WriterSample
+    protected internal abstract void InitializationLogger();
+
+    /// <summary>
+    /// Выполняет работу.
+    /// </summary>
+    protected internal void Work()
     {
-        /// <summary>
-        /// Иницифлизирует логер.
-        /// </summary>
-        protected internal abstract void InitializationLogger();
+        ILogger logger = LoggerManager.GetLogger();
 
-        /// <summary>
-        /// Выполняет работу.
-        /// </summary>
-        protected internal void Work()
-        {
-            ILogger logger = LoggerManager.GetLogger();
-
-            logger.Trace("Сообщения уровня Trace.");
-            logger.Debug("Сообщения уровня Debug.");
-            logger.Info("Сообщения уровня Info.");
-            logger.Warn("Сообщения уровня Warn.");
-            logger.Error("Сообщения уровня Error.");
-            logger.Fatal("Сообщения уровня Fatal.");
-        }
+        logger.Trace("Сообщения уровня Trace.");
+        logger.Debug("Сообщения уровня Debug.");
+        logger.Info("Сообщения уровня Info.");
+        logger.Warn("Сообщения уровня Warn.");
+        logger.Error("Сообщения уровня Error.");
+        logger.Fatal("Сообщения уровня Fatal.");
     }
 }
