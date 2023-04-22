@@ -1,6 +1,7 @@
 ﻿using System.Runtime.CompilerServices;
 
 using OkoloIt.Utilities.Logging.Configuration;
+using OkoloIt.Utilities.Logging.Data;
 
 namespace OkoloIt.Utilities.Logging;
 
@@ -32,10 +33,10 @@ public class Logger : LoggerBase, ILogger
     public void Debug(
         string message,
         [CallerMemberName] string member = "",
-        [CallerFilePath] string filePath = "",
-        [CallerLineNumber] int lineNumber = 0
+        [CallerFilePath] string file = "",
+        [CallerLineNumber] int line = 0
     )
-        => WriteMessage(LogLevel.Debug, message);
+        => WriteMessageSync(LogLevel.Debug, message, member, file, line);
 
     /// <summary>
     /// Выводит сообщение ошибки.
@@ -44,10 +45,10 @@ public class Logger : LoggerBase, ILogger
     public void Error(
         string message,
         [CallerMemberName] string member = "",
-        [CallerFilePath] string filePath = "",
-        [CallerLineNumber] int lineNumber = 0
+        [CallerFilePath] string file = "",
+        [CallerLineNumber] int line = 0
     )
-        => WriteMessage(LogLevel.Error, message);
+        => WriteMessageSync(LogLevel.Error, message, member, file, line);
 
     /// <summary>
     /// Выводит сообщение критической ошибки.
@@ -56,10 +57,10 @@ public class Logger : LoggerBase, ILogger
     public void Fatal(
         string message,
         [CallerMemberName] string member = "",
-        [CallerFilePath] string filePath = "",
-        [CallerLineNumber] int lineNumber = 0
+        [CallerFilePath] string file = "",
+        [CallerLineNumber] int line = 0
     )
-        => WriteMessage(LogLevel.Fatal, message);
+        => WriteMessageSync(LogLevel.Fatal, message, member, file, line);
 
     /// <summary>
     /// Выводит информационное сообщение.
@@ -68,10 +69,10 @@ public class Logger : LoggerBase, ILogger
     public void Info(
         string message,
         [CallerMemberName] string member = "",
-        [CallerFilePath] string filePath = "",
-        [CallerLineNumber] int lineNumber = 0
+        [CallerFilePath] string file = "",
+        [CallerLineNumber] int line = 0
     )
-        => WriteMessage(LogLevel.Info, message);
+        => WriteMessageSync(LogLevel.Info, message, member, file, line);
 
     /// <summary>
     /// Выводит сообщение.
@@ -80,10 +81,10 @@ public class Logger : LoggerBase, ILogger
     public void Trace(
         string message,
         [CallerMemberName] string member = "",
-        [CallerFilePath] string filePath = "",
-        [CallerLineNumber] int lineNumber = 0
+        [CallerFilePath] string file = "",
+        [CallerLineNumber] int line = 0
     )
-        => WriteMessage(LogLevel.Trace, message);
+        => WriteMessageSync(LogLevel.Trace, message, member, file, line);
 
     /// <summary>
     /// Выводит сообщение о не штатном поведении.
@@ -92,10 +93,31 @@ public class Logger : LoggerBase, ILogger
     public void Warn(
         string message,
         [CallerMemberName] string member = "",
-        [CallerFilePath] string filePath = "",
-        [CallerLineNumber] int lineNumber = 0
+        [CallerFilePath] string file = "",
+        [CallerLineNumber] int line = 0
     )
-        => WriteMessage(LogLevel.Warn, message);
+        => WriteMessageSync(LogLevel.Warn, message, member, file, line);
 
     #endregion Public Methods
+
+    #region Private Methods
+
+    private void WriteMessageSync(
+        LogLevel level, 
+        string message,
+        string member, 
+        string file, 
+        int line
+    )
+    {
+        LogMessage log = new(level, message) {
+            CallerMember = member,
+            CallerFile = file,
+            CallerLine = line
+        };
+
+        WriteMessage(log);
+    }
+
+    #endregion 
 }

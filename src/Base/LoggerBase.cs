@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics;
 
 using OkoloIt.Utilities.Logging.Configuration;
+using OkoloIt.Utilities.Logging.Data;
 
 namespace OkoloIt.Utilities.Logging;
 
@@ -75,46 +76,28 @@ public class LoggerBase
         };
 
     /// <summary>
-    /// Преобразует уровень логирования в строку.
-    /// </summary>
-    /// <param name="level">Преобразуемый уровень логирования.</param>
-    /// <returns>Полученная строка.</returns>
-    protected virtual string LevelToStringConverter(LogLevel level)
-        => level switch {
-            LogLevel.Trace => "TRACE",
-            LogLevel.Debug => "DEBUG",
-            LogLevel.Info  => "INFO",
-            LogLevel.Warn  => "WARN",
-            LogLevel.Error => "ERROR",
-            LogLevel.Fatal => "FATAL",
-            _ => "NONE:",
-        };
-
-    /// <summary>
     /// Записывает сообщение.
     /// </summary>
     /// <param name="level">Уровень лога.</param>
     /// <param name="message">Сообщение лога.</param>
-    protected virtual void WriteMessage(LogLevel level, string message)
+    protected virtual void WriteMessage(LogMessage message)
     {
         lock (_locker) {
-            if (IsVisibleMessage(level) == false)
+            if (IsVisibleMessage(message.Level) == false)
                 return;
-
-            string tag = LevelToStringConverter(level);
 
             switch (_configurations.Output) {
                 case OutputType.Console:
-                    WriteInConsole(level, tag, message);
+                    WriteInConsole(message);
                     return;
                 case OutputType.File:
-                    WriteInFile(tag, message);
+                    WriteInFile(message);
                     return;
                 case OutputType.System:
-                    WriteInSystemTrace(tag, message);
+                    WriteInSystemTrace(message);
                     return;
                 case OutputType.Custom:
-                    WriteInCustomMethod(tag, message);
+                    WriteInCustomMethod(message);
                     return;
                 default:
                     throw new NotImplementedException("Нет доступного метода для вывода сообщения.");
@@ -125,50 +108,38 @@ public class LoggerBase
     /// <summary>
     /// Записывает сообщение в консоль.
     /// </summary>
-    /// <param name="level">Уровень лога.</param>
-    /// <param name="tag">Тэг лога.</param>
     /// <param name="message">Сообщение.</param>
-    protected virtual void WriteInConsole(LogLevel level, string tag, string message)
+    protected virtual void WriteInConsole(LogMessage message)
     {
-        Console.ForegroundColor = LevelToColorConverter(level);
-        Console.Write($"[{tag, -5}]");
+        Console.ForegroundColor = LevelToColorConverter(message.Level);
+        Console.Write($"[{message.GetLevel()}]");
         Console.ResetColor();
-        Console.WriteLine($" {DateTime.Now:yyyy:MM:dd HH:mm:ss:ff} {message}");
+        Console.WriteLine($": {message.GetLog()}");
     }
 
     /// <summary>
     /// Записывает сообщение в пользовательский метод.
     /// </summary>
-    /// <param name="tag">Тэг лога.</param>
     /// <param name="message">Сообщение.</param>
-    protected virtual void WriteInCustomMethod(string tag, string message)
-        => _action?.Invoke(BuildMessage(tag, message));
+    protected virtual void WriteInCustomMethod(LogMessage message)
+        => _action?.Invoke($"[{message.GetLevel()}] {message.GetLog()}");
 
     /// <summary>
     /// Записывает сообщение в файл.
     /// </summary>
-    /// <param name="tag">Тэг лога.</param>
     /// <param name="message">Сообщение.</param>
-    protected virtual void WriteInFile(string tag, string message)
+    protected virtual void WriteInFile(LogMessage message)
     {
         using var writer = new StreamWriter(_configurations.FileName, true);
-        writer.WriteLineAsync(BuildMessage(tag, message));
+        writer.WriteLineAsync($"[{message.GetLevel()}] {message.GetLog()}");
     }
 
     /// <summary>
     /// Записывает сообщение в системную консоль.
     /// </summary>
-    /// <param name="tag">Тэг лога.</param>
     /// <param name="message">Сообщение.</param>
-    protected virtual void WriteInSystemTrace(string tag, string message)
-        => Trace.WriteLine(BuildMessage(tag, message));
+    protected virtual void WriteInSystemTrace(LogMessage message)
+        => Trace.WriteLine($"[{message.GetLevel()}] {message.GetLog()}");
 
     #endregion Protected Methods
-
-    #region Private Methods
-
-    private static string BuildMessage(string tag, string message)
-        => $"[{tag,-5}] {DateTime.Now:yyyy:MM:dd HH:mm:ss:ff} {message}";
-
-    #endregion Private Methods
 }
