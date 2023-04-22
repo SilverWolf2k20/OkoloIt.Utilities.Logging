@@ -15,13 +15,13 @@ internal abstract class WriterSample
     /// </summary>
     protected internal void Work()
     {
-        ILogger logger = LoggerManager.GetLogger();
+        ILogger? logger = LoggerManager.CurrentLogger;
 
-        logger.Trace("Сообщения уровня Trace.");
-        logger.Debug("Сообщения уровня Debug.");
-        logger.Info("Сообщения уровня Info.");
-        logger.Warn("Сообщения уровня Warn.");
-        logger.Error("Сообщения уровня Error.");
-        logger.Fatal("Сообщения уровня Fatal.");
+        logger?.Trace("Сообщения уровня Trace.");
+        logger?.Debug("Сообщения уровня Debug.");
+        logger?.Info("Сообщения уровня Info.");
+        logger?.Warn("Сообщения уровня Warn.");
+        logger?.Error("Сообщения уровня Error.");
+        logger?.Fatal("Сообщения уровня Fatal.");
     }
 }

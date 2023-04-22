@@ -16,8 +16,8 @@ public interface ILogger
     public void Debug(
         string message,
         [CallerMemberName] string member = "",
-        [CallerFilePath] string filePath = "",
-        [CallerLineNumber] int lineNumber = 0
+        [CallerFilePath] string file = "",
+        [CallerLineNumber] int line = 0
     );
 
     /// <summary>
@@ -27,8 +27,8 @@ public interface ILogger
     public void Error(
         string message,
         [CallerMemberName] string member = "",
-        [CallerFilePath] string filePath = "",
-        [CallerLineNumber] int lineNumber = 0
+        [CallerFilePath] string file = "",
+        [CallerLineNumber] int line = 0
     );
 
     /// <summary>
@@ -38,8 +38,8 @@ public interface ILogger
     public void Fatal(
         string message,
         [CallerMemberName] string member = "",
-        [CallerFilePath] string filePath = "",
-        [CallerLineNumber] int lineNumber = 0
+        [CallerFilePath] string file = "",
+        [CallerLineNumber] int line = 0
     );
 
     /// <summary>
@@ -49,8 +49,8 @@ public interface ILogger
     public void Info(
         string message,
         [CallerMemberName] string member = "",
-        [CallerFilePath] string filePath = "",
-        [CallerLineNumber] int lineNumber = 0
+        [CallerFilePath] string file = "",
+        [CallerLineNumber] int line = 0
     );
 
     /// <summary>
@@ -60,8 +60,8 @@ public interface ILogger
     public void Trace(
         string message,
         [CallerMemberName] string member = "",
-        [CallerFilePath] string filePath = "",
-        [CallerLineNumber] int lineNumber = 0
+        [CallerFilePath] string file = "",
+        [CallerLineNumber] int line = 0
     );
 
     /// <summary>
@@ -71,8 +71,8 @@ public interface ILogger
     public void Warn(
         string message,
         [CallerMemberName] string member = "",
-        [CallerFilePath] string filePath = "",
-        [CallerLineNumber] int lineNumber = 0
+        [CallerFilePath] string file = "",
+        [CallerLineNumber] int line = 0
     );
 
     #endregion Public Methods

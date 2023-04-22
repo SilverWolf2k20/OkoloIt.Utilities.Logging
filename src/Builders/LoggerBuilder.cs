@@ -29,7 +29,7 @@ public class LoggerBuilder : ILoggerBuilder
         else
             logger = new Logger(_configuration, _action);
 
-        LoggerManager.SetLogger(logger);
+        LoggerManager.CurrentLogger = logger;
 
         return logger;
     }
