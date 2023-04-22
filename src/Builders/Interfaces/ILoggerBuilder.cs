@@ -1,87 +1,86 @@
 ﻿using OkoloIt.Utilities.Logging.Configuration;
 
-namespace OkoloIt.Utilities.Logging
+namespace OkoloIt.Utilities.Logging;
+
+/// <summary>
+/// Интерфейс строителя логера.
+/// </summary>
+public interface ILoggerBuilder
 {
+    #region Public Methods
+
     /// <summary>
-    /// Интерфейс строителя логера.
+    /// Строит логер, наследуемый от <see cref="ILogger"/>.
     /// </summary>
-    public interface ILoggerBuilder
-    {
-        #region Public Methods
+    /// <returns>Созданный логер.</returns>
+    public ILogger Build();
 
-        /// <summary>
-        /// Строит логер, наследуемый от <see cref="ILogger"/>.
-        /// </summary>
-        /// <returns>Созданный логер.</returns>
-        public ILogger Build();
+    /// <summary>
+    /// Устанавливает конфигурацию для логера.
+    /// </summary>
+    /// <param name="configuration">Конфигурация логера.</param>
+    /// <returns>
+    /// Экземпляр строителя, наследуемого от <see cref="ILoggerBuilder"/>.
+    /// </returns>
+    public ILoggerBuilder SetConfiguration(LoggerConfiguration configuration);
 
-        /// <summary>
-        /// Устанавливает конфигурацию для логера.
-        /// </summary>
-        /// <param name="configuration">Конфигурация логера.</param>
-        /// <returns>
-        /// Экземпляр строителя, наследуемого от <see cref="ILoggerBuilder"/>.
-        /// </returns>
-        public ILoggerBuilder SetConfiguration(LoggerConfiguration configuration);
+    /// <summary>
+    /// Устанавливает минимальный уровень логирования.
+    /// </summary>
+    /// <param name="level">Минимальный уровень логирования.</param>
+    /// <returns>
+    /// Экземпляр строителя, наследуемого от <see cref="ILoggerBuilder"/>.
+    /// </returns>
+    public ILoggerBuilder SetMinimalLevel(LogLevel level);
 
-        /// <summary>
-        /// Устанавливает минимальный уровень логирования.
-        /// </summary>
-        /// <param name="level">Минимальный уровень логирования.</param>
-        /// <returns>
-        /// Экземпляр строителя, наследуемого от <see cref="ILoggerBuilder"/>.
-        /// </returns>
-        public ILoggerBuilder SetMinimalLevel(LogLevel level);
+    /// <summary>
+    /// Устанавливает формат вывода сообщений.
+    /// </summary>
+    /// <returns>
+    /// Экземпляр строителя, наследуемого от <see cref="ILoggerBuilder"/>.
+    /// </returns>
+    public ILoggerBuilder SetWriteFormat();
 
-        /// <summary>
-        /// Устанавливает формат вывода сообщений.
-        /// </summary>
-        /// <returns>
-        /// Экземпляр строителя, наследуемого от <see cref="ILoggerBuilder"/>.
-        /// </returns>
-        public ILoggerBuilder SetWriteFormat();
+    /// <summary>
+    /// Настраивает логер на асинхронную работу.
+    /// </summary>
+    /// <returns>
+    /// Экземпляр строителя, наследуемого от <see cref="ILoggerBuilder"/>.
+    /// </returns>
+    public ILoggerBuilder UseAsync();
 
-        /// <summary>
-        /// Настраивает логер на асинхронную работу.
-        /// </summary>
-        /// <returns>
-        /// Экземпляр строителя, наследуемого от <see cref="ILoggerBuilder"/>.
-        /// </returns>
-        public ILoggerBuilder UseAsync();
+    /// <summary>
+    /// Устанавливает вывод сообщений в консоль.
+    /// </summary>
+    /// <returns>
+    /// Экземпляр строителя, наследуемого от <see cref="ILoggerBuilder"/>.
+    /// </returns>
+    public ILoggerBuilder WriteToConsole();
 
-        /// <summary>
-        /// Устанавливает вывод сообщений в консоль.
-        /// </summary>
-        /// <returns>
-        /// Экземпляр строителя, наследуемого от <see cref="ILoggerBuilder"/>.
-        /// </returns>
-        public ILoggerBuilder WriteToConsole();
+    /// <summary>
+    /// Устанавливает вывод сообщений в метод.
+    /// </summary>
+    /// <param name="action">Метод записи сообщений.</param>
+    /// <returns>
+    /// Экземпляр строителя, наследуемого от <see cref="ILoggerBuilder"/>.
+    /// </returns>
+    public ILoggerBuilder WriteToCustom(Action<string> action);
 
-        /// <summary>
-        /// Устанавливает вывод сообщений в метод.
-        /// </summary>
-        /// <param name="action">Метод записи сообщений.</param>
-        /// <returns>
-        /// Экземпляр строителя, наследуемого от <see cref="ILoggerBuilder"/>.
-        /// </returns>
-        public ILoggerBuilder WriteToCustom(Action<string> action);
+    /// <summary>
+    /// Устанавливает вывод сообщений в файл.
+    /// </summary>
+    /// <returns>
+    /// Экземпляр строителя, наследуемого от <see cref="ILoggerBuilder"/>.
+    /// </returns>
+    public ILoggerBuilder WriteToFile(string fileName = "");
 
-        /// <summary>
-        /// Устанавливает вывод сообщений в файл.
-        /// </summary>
-        /// <returns>
-        /// Экземпляр строителя, наследуемого от <see cref="ILoggerBuilder"/>.
-        /// </returns>
-        public ILoggerBuilder WriteToFile(string fileName = "");
+    /// <summary>
+    /// Устанавливает вывод сообщений в системную консоль.
+    /// </summary>
+    /// <returns>
+    /// Экземпляр строителя, наследуемого от <see cref="ILoggerBuilder"/>.
+    /// </returns>
+    public ILoggerBuilder WriteToSystemTrace();
 
-        /// <summary>
-        /// Устанавливает вывод сообщений в системную консоль.
-        /// </summary>
-        /// <returns>
-        /// Экземпляр строителя, наследуемого от <see cref="ILoggerBuilder"/>.
-        /// </returns>
-        public ILoggerBuilder WriteToSystemTrace();
-
-        #endregion Public Methods
-    }
+    #endregion Public Methods
 }
