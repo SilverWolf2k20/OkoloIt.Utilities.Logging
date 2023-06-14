@@ -22,7 +22,7 @@ public class LoggerBase
 
     #region Private Fields
 
-    private static object _locker = new();
+    private static readonly object _locker = new();
 
     #endregion Private Fields
 
@@ -78,7 +78,6 @@ public class LoggerBase
     /// <summary>
     /// Записывает сообщение.
     /// </summary>
-    /// <param name="level">Уровень лога.</param>
     /// <param name="message">Сообщение лога.</param>
     protected virtual void WriteMessage(LogMessage message)
     {
@@ -114,7 +113,7 @@ public class LoggerBase
         Console.ForegroundColor = LevelToColorConverter(message.Level);
         Console.Write($"[{message.GetLevel()}]");
         Console.ResetColor();
-        Console.WriteLine($": {message.GetLog()}");
+        Console.WriteLine($": {message.GetLog(_configurations.Format)}");
     }
 
     /// <summary>
@@ -122,7 +121,7 @@ public class LoggerBase
     /// </summary>
     /// <param name="message">Сообщение.</param>
     protected virtual void WriteInCustomMethod(LogMessage message)
-        => _action?.Invoke($"[{message.GetLevel()}] {message.GetLog()}");
+        => _action?.Invoke($"[{message.GetLevel()}] {message.GetLog(_configurations.Format)}");
 
     /// <summary>
     /// Записывает сообщение в файл.
@@ -131,7 +130,7 @@ public class LoggerBase
     protected virtual void WriteInFile(LogMessage message)
     {
         using var writer = new StreamWriter(_configurations.FileName, true);
-        writer.WriteLineAsync($"[{message.GetLevel()}] {message.GetLog()}");
+        writer.WriteLineAsync($"[{message.GetLevel()}] {message.GetLog(_configurations.Format)}");
     }
 
     /// <summary>
@@ -139,7 +138,7 @@ public class LoggerBase
     /// </summary>
     /// <param name="message">Сообщение.</param>
     protected virtual void WriteInSystemTrace(LogMessage message)
-        => Trace.WriteLine($"[{message.GetLevel()}] {message.GetLog()}");
+        => Trace.WriteLine($"[{message.GetLevel()}] {message.GetLog(_configurations.Format)}");
 
     #endregion Protected Methods
 }
