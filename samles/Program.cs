@@ -3,6 +3,7 @@
 WriterSample sample = new WriteToConsoleSample();
 sample.InitializationLogger();
 sample.Work();
+
 /*
 sample = new WriteToCustomMethodSample();
 sample.InitializationLogger();
