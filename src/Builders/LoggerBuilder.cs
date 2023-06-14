@@ -63,11 +63,13 @@ public class LoggerBuilder : ILoggerBuilder
     /// <summary>
     /// Устанавливает формат вывода сообщений.
     /// </summary>
+    /// <param name="format">Формат вывода сообщения.</param>
     /// <returns>
     /// Экземпляр строителя, наследуемого от <see cref="ILoggerBuilder"/>.
     /// </returns>
-    public ILoggerBuilder SetWriteFormat()
+    public ILoggerBuilder SetWriteFormat(string format)
     {
+        _configuration.Format = format;
         return this;
     }
 

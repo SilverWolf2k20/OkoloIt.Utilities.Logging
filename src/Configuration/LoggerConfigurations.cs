@@ -3,7 +3,7 @@
 /// <summary>
 /// Конфигурация логера.
 /// </summary>
-public class LoggerConfiguration
+public record class LoggerConfiguration
 {
     /// <summary>
     /// Путь вывода.
@@ -19,6 +19,11 @@ public class LoggerConfiguration
     /// Имя файла для записи.
     /// </summary>
     public string FileName { get; set; } = "logs.log";
+
+    /// <summary>
+    /// Формат вывода лога.
+    /// </summary>
+    public string Format { get; set; } = "yyyy:MM:dd HH:mm:ss:ffff; {0} {1} ({2}): ";
 
     /// <summary>
     /// Минимальный уровень логов.

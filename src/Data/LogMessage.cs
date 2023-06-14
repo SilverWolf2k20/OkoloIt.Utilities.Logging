@@ -77,18 +77,31 @@ public sealed class LogMessage
     /// Возвращает собранное сообщение лога.
     /// </summary>
     /// <returns>Собранное сообщение лога.</returns>
-    internal string GetLog()
+    internal string GetLog(string format)
     {
-        StringBuilder builder = new();
+        try {
+            string[] formats = format.Split(';');
 
-        builder.Append(DateTime.ToString("yyyy:MM:dd HH:mm:ss:ffff"));
-        builder.Append(" ");
-        builder.Append(CallerFile);
-        builder.Append($" ({CallerLine}): ");
-        builder.Append(Message);
+            string timeFormat = formats[0];
+            string messageFormat = formats[1];
 
-        return builder.ToString();
+            StringBuilder builder = new();
+
+            builder.Append(string.Format(
+                messageFormat,
+                DateTime.ToString(timeFormat),
+                CallerFile,
+                CallerLine
+            ));
+            builder.Append(Message);
+
+            return builder.ToString();
+        }
+        catch {
+            throw new ArgumentException("Некорректная строка формата!");
+        }
     }
 
     #endregion Internal Methods
+
 }

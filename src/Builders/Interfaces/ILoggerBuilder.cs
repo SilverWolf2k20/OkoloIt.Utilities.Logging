@@ -36,10 +36,11 @@ public interface ILoggerBuilder
     /// <summary>
     /// Устанавливает формат вывода сообщений.
     /// </summary>
+    /// <param name="format">Формат вывода сообщения.</param>
     /// <returns>
     /// Экземпляр строителя, наследуемого от <see cref="ILoggerBuilder"/>.
     /// </returns>
-    public ILoggerBuilder SetWriteFormat();
+    public ILoggerBuilder SetWriteFormat(string format);
 
     /// <summary>
     /// Настраивает логер на асинхронную работу.

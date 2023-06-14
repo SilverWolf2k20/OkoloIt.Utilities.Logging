@@ -17,4 +17,5 @@ sample = new WriteToSystemTraceSample();
 sample.InitializationLogger();
 sample.Work();
 */
+
 Console.ReadLine();
