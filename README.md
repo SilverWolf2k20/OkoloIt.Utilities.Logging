@@ -1,6 +1,6 @@
 # OkoloIt.Utilities.Logging
 
-![coverage](https://img.shields.io/badge/version-2.0.0-blue)
+![coverage](https://img.shields.io/badge/version-2.1.0-blue)
 ![coverage](https://img.shields.io/badge/-Okolo%20IT-orange)
 ![alt text](https://github.com/open-telemetry/opentelemetry-dotnet/actions/workflows/linux-ci.yml/badge.svg?branch=main)
 ![alt text](https://github.com/open-telemetry/opentelemetry-dotnet/actions/workflows/windows-ci.yml/badge.svg?branch=main)
