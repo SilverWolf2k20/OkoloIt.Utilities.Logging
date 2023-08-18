@@ -7,7 +7,7 @@ namespace OkoloIt.Utilities.Logging.Data;
 /// <summary>
 /// Данные лога.
 /// </summary>
-internal sealed class LogMessage
+public sealed class LogMessage
 {
     #region Internal Constructors
 
