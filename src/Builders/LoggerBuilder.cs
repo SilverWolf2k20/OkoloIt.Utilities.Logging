@@ -43,6 +43,8 @@ public class LoggerBuilder : ILoggerBuilder
     /// </returns>
     public ILoggerBuilder SetConfiguration(LoggerConfiguration configuration)
     {
+        ArgumentNullException.ThrowIfNull(configuration);
+
         _configuration = configuration;
         return this;
     }
@@ -56,6 +58,8 @@ public class LoggerBuilder : ILoggerBuilder
     /// </returns>
     public ILoggerBuilder SetMinimalLevel(LogLevel level)
     {
+        ArgumentNullException.ThrowIfNull(level);
+
         _configuration.MinimalLevel = level;
         return this;
     }
@@ -69,6 +73,8 @@ public class LoggerBuilder : ILoggerBuilder
     /// </returns>
     public ILoggerBuilder SetWriteFormat(string format)
     {
+        ArgumentNullException.ThrowIfNull(format);
+
         _configuration.Format = format;
         return this;
     }
@@ -106,6 +112,8 @@ public class LoggerBuilder : ILoggerBuilder
     /// </returns>
     public ILoggerBuilder WriteToCustom(Action<string> action)
     {
+        ArgumentNullException.ThrowIfNull(action);
+
         _configuration.Output = OutputType.Custom;
         _action = action;
         return this;
@@ -119,6 +127,8 @@ public class LoggerBuilder : ILoggerBuilder
     /// </returns>
     public ILoggerBuilder WriteToFile(string fileName)
     {
+        ArgumentNullException.ThrowIfNull(fileName);
+
         _configuration.Output = OutputType.File;
 
         if (string.IsNullOrEmpty(fileName) == false)
