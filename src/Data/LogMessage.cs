@@ -82,20 +82,13 @@ public sealed class LogMessage
         try {
             string[] formats = format.Split(';');
 
-            string timeFormat = formats[0];
+            string timeFormat    = formats[0];
             string messageFormat = formats[1];
 
-            StringBuilder builder = new();
+            if (string.IsNullOrEmpty(timeFormat))
+                return GetLogWithoutTime(messageFormat);
 
-            builder.Append(string.Format(
-                messageFormat,
-                DateTime.ToString(timeFormat),
-                CallerFile,
-                CallerLine
-            ));
-            builder.Append(Message);
-
-            return builder.ToString();
+            return GetLog(timeFormat, messageFormat);
         }
         catch {
             throw new ArgumentException("Некорректная строка формата!");
@@ -104,4 +97,30 @@ public sealed class LogMessage
 
     #endregion Internal Methods
 
+    #region Private Methods
+
+    private string GetLog(string timeFormat, string messageFormat)
+    {
+        return new StringBuilder().Append(string.Format(
+                messageFormat,
+                DateTime.ToString(timeFormat),
+                CallerFile,
+                CallerLine
+            ))
+            .Append(Message)
+            .ToString();
+    }
+
+    private string GetLogWithoutTime(string messageFormat)
+    {
+        return new StringBuilder().Append(string.Format(
+                messageFormat,
+                CallerFile,
+                CallerLine
+            ))
+            .Append(Message)
+            .ToString();
+    }
+
+    #endregion Private Methods
 }
