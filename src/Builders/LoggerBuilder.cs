@@ -16,10 +16,15 @@ public class LoggerBuilder : ILoggerBuilder
 
     #region Public Methods
 
-    /// <summary>
-    /// Строит логер, наследуемый от <see cref="ILogger"/>.
-    /// </summary>
-    /// <returns>Созданный логер.</returns>
+    /// <inheritdoc/>
+    public ILoggerBuilder CanRewriteFile()
+    {
+        _configuration.CanRewriteFile = true;
+
+        return this;
+    }
+
+    /// <inheritdoc/>
     public ILogger Build()
     {
         ILogger logger;
@@ -31,16 +36,13 @@ public class LoggerBuilder : ILoggerBuilder
 
         LoggerManager.CurrentLogger = logger;
 
+        if (_configuration.Output == OutputType.File)
+            RewriteFile();
+
         return logger;
     }
 
-    /// <summary>
-    /// Устанавливает конфигурацию для логера.
-    /// </summary>
-    /// <param name="configuration">Конфигурация логера.</param>
-    /// <returns>
-    /// Экземпляр строителя, наследуемого от <see cref="ILoggerBuilder"/>.
-    /// </returns>
+    /// <inheritdoc/>
     public ILoggerBuilder SetConfiguration(LoggerConfiguration configuration)
     {
         ArgumentNullException.ThrowIfNull(configuration);
@@ -49,13 +51,7 @@ public class LoggerBuilder : ILoggerBuilder
         return this;
     }
 
-    /// <summary>
-    /// Устанавливает минимальный уровень логирования.
-    /// </summary>
-    /// <param name="level">Минимальный уровень логирования.</param>
-    /// <returns>
-    /// Экземпляр строителя, наследуемого от <see cref="ILoggerBuilder"/>.
-    /// </returns>
+    /// <inheritdoc/>
     public ILoggerBuilder SetMinimalLevel(LogLevel level)
     {
         ArgumentNullException.ThrowIfNull(level);
@@ -64,13 +60,7 @@ public class LoggerBuilder : ILoggerBuilder
         return this;
     }
 
-    /// <summary>
-    /// Устанавливает формат вывода сообщений.
-    /// </summary>
-    /// <param name="format">Формат вывода сообщения.</param>
-    /// <returns>
-    /// Экземпляр строителя, наследуемого от <see cref="ILoggerBuilder"/>.
-    /// </returns>
+    /// <inheritdoc/>
     public ILoggerBuilder SetWriteFormat(string format)
     {
         ArgumentNullException.ThrowIfNull(format);
@@ -79,37 +69,21 @@ public class LoggerBuilder : ILoggerBuilder
         return this;
     }
 
-    /// <summary>
-    /// Настраивает логер на асинхронную работу.
-    /// </summary>
-    /// <returns>
-    /// Экземпляр строителя, наследуемого от <see cref="ILoggerBuilder"/>.
-    /// </returns>
+    /// <inheritdoc/>
     public ILoggerBuilder UseAsync()
     {
         _configuration.UseAsyncWrite = true;
         return this;
     }
 
-    /// <summary>
-    /// Устанавливает вывод сообщений в консоль.
-    /// </summary>
-    /// <returns>
-    /// Экземпляр строителя, наследуемого от <see cref="ILoggerBuilder"/>.
-    /// </returns>
+    /// <inheritdoc/>
     public ILoggerBuilder WriteToConsole()
     {
         _configuration.Output = OutputType.Console;
         return this;
     }
 
-    /// <summary>
-    /// Устанавливает вывод сообщений в метод.
-    /// </summary>
-    /// <param name="action">Метод записи сообщений.</param>
-    /// <returns>
-    /// Экземпляр строителя, наследуемого от <see cref="ILoggerBuilder"/>.
-    /// </returns>
+    /// <inheritdoc/>
     public ILoggerBuilder WriteToCustom(Action<string> action)
     {
         ArgumentNullException.ThrowIfNull(action);
@@ -119,12 +93,7 @@ public class LoggerBuilder : ILoggerBuilder
         return this;
     }
 
-    /// <summary>
-    /// Устанавливает вывод сообщений в файл.
-    /// </summary>
-    /// <returns>
-    /// Экземпляр строителя, наследуемого от <see cref="ILoggerBuilder"/>.
-    /// </returns>
+    /// <inheritdoc/>
     public ILoggerBuilder WriteToFile(string fileName)
     {
         ArgumentNullException.ThrowIfNull(fileName);
@@ -137,12 +106,7 @@ public class LoggerBuilder : ILoggerBuilder
         return this;
     }
 
-    /// <summary>
-    /// Устанавливает вывод сообщений в системную консоль.
-    /// </summary>
-    /// <returns>
-    /// Экземпляр строителя, наследуемого от <see cref="ILoggerBuilder"/>.
-    /// </returns>
+    /// <inheritdoc/>
     public ILoggerBuilder WriteToSystemTrace()
     {
         _configuration.Output = OutputType.System;
@@ -150,4 +114,16 @@ public class LoggerBuilder : ILoggerBuilder
     }
 
     #endregion Public Methods
+
+    #region Private Methods
+
+    private void RewriteFile()
+    {
+        if (_configuration.CanRewriteFile == false)
+            return;
+
+        using var _ = File.Create(_configuration.FileName);
+    }
+
+    #endregion Private Methods
 }

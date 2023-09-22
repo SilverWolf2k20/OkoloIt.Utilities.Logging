@@ -6,6 +6,11 @@
 public record class LoggerConfiguration
 {
     /// <summary>
+    /// Перезаписывать файл при инициализации логера.
+    /// </summary>
+    public bool CanRewriteFile { get; set; } = default;
+
+    /// <summary>
     /// Путь вывода.
     /// </summary>
     public OutputType Output { get; set; } = default;
