@@ -1,5 +1,4 @@
-﻿using System.Diagnostics.Metrics;
-using System.Runtime.CompilerServices;
+﻿using System.Runtime.CompilerServices;
 
 using OkoloIt.Utilities.Logging.Configuration;
 using OkoloIt.Utilities.Logging.Data;
@@ -37,7 +36,8 @@ public class AsyncLogger : LoggerBase, ILogger
         [CallerFilePath] string file = "",
         [CallerLineNumber] int line = 0
     )
-        => await WriteMessageAsync(LogLevel.Debug, message, member, file, line);
+        => await WriteMessageAsync(LogLevel.Debug, message, member, file, line)
+            .ConfigureAwait(false);
 
     /// <summary>
     /// Асинхронно выводит сообщение ошибки.
@@ -49,7 +49,8 @@ public class AsyncLogger : LoggerBase, ILogger
         [CallerFilePath] string file = "",
         [CallerLineNumber] int line = 0
     )
-        => await WriteMessageAsync(LogLevel.Error, message, member, file, line);
+        => await WriteMessageAsync(LogLevel.Error, message, member, file, line)
+            .ConfigureAwait(false);
 
     /// <summary>
     /// Асинхронно выводит сообщение критической ошибки.
@@ -61,7 +62,8 @@ public class AsyncLogger : LoggerBase, ILogger
         [CallerFilePath] string file = "",
         [CallerLineNumber] int line = 0
     )
-        => await WriteMessageAsync(LogLevel.Fatal, message, member, file, line);
+        => await WriteMessageAsync(LogLevel.Fatal, message, member, file, line)
+            .ConfigureAwait(false);
 
     /// <summary>
     /// Асинхронно выводит информационное сообщение.
@@ -73,7 +75,8 @@ public class AsyncLogger : LoggerBase, ILogger
         [CallerFilePath] string file = "",
         [CallerLineNumber] int line = 0
     )
-        => await WriteMessageAsync(LogLevel.Info, message, member, file, line);
+        => await WriteMessageAsync(LogLevel.Info, message, member, file, line)
+            .ConfigureAwait(false);
 
     /// <summary>
     /// Асинхронно выводит сообщение.
@@ -85,7 +88,8 @@ public class AsyncLogger : LoggerBase, ILogger
         [CallerFilePath] string file = "",
         [CallerLineNumber] int line = 0
     )
-        => await WriteMessageAsync(LogLevel.Trace, message, member, file, line);
+        => await WriteMessageAsync(LogLevel.Trace, message, member, file, line)
+            .ConfigureAwait(false);
 
     /// <summary>
     /// Асинхронно выводит сообщение о не штатном поведении.
@@ -97,7 +101,8 @@ public class AsyncLogger : LoggerBase, ILogger
         [CallerFilePath] string file = "",
         [CallerLineNumber] int line = 0
     )
-        => await WriteMessageAsync(LogLevel.Warn, message, member, file, line);
+        => await WriteMessageAsync(LogLevel.Warn, message, member, file, line)
+            .ConfigureAwait(false);
 
     #endregion Public Methods
 
@@ -117,7 +122,7 @@ public class AsyncLogger : LoggerBase, ILogger
             CallerLine = line
         };
 
-        await Task.Run(() => WriteMessage(log));
+        await Task.Run(() => WriteMessage(log)).ConfigureAwait(false);
     }
 
     #endregion Private Methods
