@@ -68,8 +68,8 @@ public class LoggerBase
         => level switch {
             LogLevel.Trace => ConsoleColor.Green,
             LogLevel.Debug => ConsoleColor.Magenta,
-            LogLevel.Info => ConsoleColor.Blue,
-            LogLevel.Warn => ConsoleColor.Yellow,
+            LogLevel.Info  => ConsoleColor.Blue,
+            LogLevel.Warn  => ConsoleColor.Yellow,
             LogLevel.Error => ConsoleColor.Red,
             LogLevel.Fatal => ConsoleColor.DarkRed,
             _ => ConsoleColor.White,
