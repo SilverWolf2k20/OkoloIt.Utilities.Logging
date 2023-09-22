@@ -16,6 +16,14 @@ public interface ILoggerBuilder
     public ILogger Build();
 
     /// <summary>
+    /// Включить перезаписывание файла.
+    /// </summary>
+    /// <returns>
+    /// Экземпляр строителя, наследуемого от <see cref="ILoggerBuilder"/>.
+    /// </returns>
+    public ILoggerBuilder CanRewriteFile();
+
+    /// <summary>
     /// Устанавливает конфигурацию для логера.
     /// </summary>
     /// <param name="configuration">Конфигурация логера.</param>
