@@ -1,6 +1,6 @@
 # OkoloIt.Utilities.Logging
 
-![coverage](https://img.shields.io/badge/version-2.1.0-blue)
+![coverage](https://img.shields.io/badge/version-2.3.0-blue)
 ![coverage](https://img.shields.io/badge/-Okolo%20IT-orange)
 ![alt text](https://github.com/open-telemetry/opentelemetry-dotnet/actions/workflows/linux-ci.yml/badge.svg?branch=main)
 ![alt text](https://github.com/open-telemetry/opentelemetry-dotnet/actions/workflows/windows-ci.yml/badge.svg?branch=main)
@@ -26,8 +26,11 @@ Install-Package OkoloIt.Utilities.Logging
 
 ## История выпусков
 
-2023-03-05 - 1.0.0
-2023-04-22 - 2.0.0
+- 2023.03.05 - 1.0.0
+- 2023.04.22 - 2.0.0
+- 2023.06.14 - 2.1.0
+- 2023.08.18 - 2.2.0
+- 2023.09.22 - 2.3.0
 
 ## Авторы
 
