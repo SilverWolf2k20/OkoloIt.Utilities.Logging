@@ -8,6 +8,7 @@ internal class WriteToFileSample : WriterSample
     {
         ILogger logger = new LoggerBuilder()
             .SetMinimalLevel(LogLevel.Trace)
+            .CanRewriteFile()
             .WriteToFile("programm_logs.log")
             .UseAsync()
             .Build();
