@@ -112,7 +112,7 @@ public class Logger : LoggerBase, ILogger
     {
         LogMessage log = new(level, message) {
             CallerMember = member,
-            CallerFile = file,
+            CallerFile = Path.GetFileNameWithoutExtension(file) ?? file,
             CallerLine = line
         };
 
