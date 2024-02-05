@@ -34,13 +34,7 @@ public sealed class LogMessage
     /// <summary>
     /// Файл, в котором произошло обращение к логеру.
     /// </summary>
-    internal string CallerFile {
-        get => _callerFile;
-        init {
-            string product = Assembly.GetExecutingAssembly()
-                .GetCustomAttributes(typeof(AssemblyProductAttribute), true)
-                .OfType<AssemblyProductAttribute>()
-                .FirstOrDefault()?.Product ?? string.Empty;
+    internal string CallerFile { get; init; } = string.Empty;
 
             var productFolder = value.Split(Path.DirectorySeparatorChar)
                 .SkipWhile(d => d.Equals(product) == false)
