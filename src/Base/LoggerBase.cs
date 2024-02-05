@@ -16,6 +16,10 @@ public class LoggerBase
     /// Конфигурация логера.
     /// </summary>
     protected LoggerConfiguration _configurations;
+
+    /// <summary>
+    /// Метод для вывода сообщения.
+    /// </summary>
     protected Action<string>? _action;
 
     #endregion Protected Fields
