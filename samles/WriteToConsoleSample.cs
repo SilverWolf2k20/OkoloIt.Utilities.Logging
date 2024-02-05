@@ -8,7 +8,7 @@ internal class WriteToConsoleSample : WriterSample
     {
         ILogger logger = new LoggerBuilder()
             .SetMinimalLevel(LogLevel.Trace)
-            .SetWriteFormat("yyyy:MM:dd HH:mm:ss:ffff;{0} {1} ({2}): ")
+            .SetWriteFormat(" {0:yyyy:MM:dd HH:mm:ss:ffff} {1} ({2}): ")
             .WriteToConsole()
             .UseAsync()
             .Build();

@@ -8,7 +8,7 @@ internal class WriteToCustomMethodSample : WriterSample
     {
         ILogger logger = new LoggerBuilder()
             .SetMinimalLevel(LogLevel.Trace)
-            .SetWriteFormat("yyyy:MM:dd HH:mm:ss;{0} ({2}): ")
+            .SetWriteFormat(" {0:yyyy:MM:dd HH:mm:ss} ({2}): ")
             .WriteToCustom(msg => Console.WriteLine($"Срач-сообщение: {msg}"))
             .UseAsync()
             .Build();
