@@ -115,9 +115,9 @@ public class LoggerBase
     protected virtual void WriteInConsole(LogMessage message)
     {
         Console.ForegroundColor = LevelToColorConverter(message.Level);
-        Console.Write($"[{message.GetLevel()}]");
+        Console.Write($"{message.GetLevel()}");
         Console.ResetColor();
-        Console.WriteLine($": {message.GetLog(_configurations.Format)}");
+        Console.WriteLine($"{message.GetLog(_configurations.Format)}");
     }
 
     /// <summary>
@@ -125,7 +125,7 @@ public class LoggerBase
     /// </summary>
     /// <param name="message">Сообщение.</param>
     protected virtual void WriteInCustomMethod(LogMessage message)
-        => _action?.Invoke($"[{message.GetLevel()}] {message.GetLog(_configurations.Format)}");
+        => _action?.Invoke($"{message.GetLevel()}{message.GetLog(_configurations.Format)}");
 
     /// <summary>
     /// Записывает сообщение в файл.
@@ -134,7 +134,7 @@ public class LoggerBase
     protected virtual void WriteInFile(LogMessage message)
     {
         using var writer = new StreamWriter(_configurations.FileName, true);
-        writer.WriteLineAsync($"[{message.GetLevel()}] {message.GetLog(_configurations.Format)}");
+        writer.WriteLineAsync($"{message.GetLevel()}{message.GetLog(_configurations.Format)}");
     }
 
     /// <summary>
@@ -142,7 +142,7 @@ public class LoggerBase
     /// </summary>
     /// <param name="message">Сообщение.</param>
     protected virtual void WriteInSystemTrace(LogMessage message)
-        => Trace.WriteLine($"[{message.GetLevel()}] {message.GetLog(_configurations.Format)}");
+        => Trace.WriteLine($"{message.GetLevel()}{message.GetLog(_configurations.Format)}");
 
     #endregion Protected Methods
 }
