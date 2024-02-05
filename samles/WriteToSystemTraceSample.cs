@@ -8,7 +8,7 @@ internal class WriteToSystemTraceSample : WriterSample
     {
         ILogger logger = new LoggerBuilder()
             .SetMinimalLevel(LogLevel.Trace)
-            .SetWriteFormat("HH:mm:ss:fff;{0}: ")
+            .SetWriteFormat(" {0:yyyy:MM:dd HH:mm:ss:fff}: ")
             .WriteToSystemTrace()
             .UseAsync()
             .Build();
