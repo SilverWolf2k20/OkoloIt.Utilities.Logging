@@ -1,6 +1,4 @@
-﻿using System.Net.WebSockets;
-using System.Reflection;
-using System.Text;
+﻿using System.Text;
 
 using OkoloIt.Utilities.Logging.Configuration;
 
@@ -11,8 +9,6 @@ namespace OkoloIt.Utilities.Logging.Data;
 /// </summary>
 public sealed class LogMessage
 {
-    private string _callerFile = string.Empty;
-
     #region Internal Constructors
 
     /// <summary>
@@ -35,14 +31,6 @@ public sealed class LogMessage
     /// Файл, в котором произошло обращение к логеру.
     /// </summary>
     internal string CallerFile { get; init; } = string.Empty;
-
-            var productFolder = value.Split(Path.DirectorySeparatorChar)
-                .SkipWhile(d => d.Equals(product) == false)
-                .ToArray();
-
-            _callerFile = Path.Combine(productFolder);
-        }
-    }
 
     /// <summary>
     /// Строка, в которой произошло обращение к логеру.
@@ -79,10 +67,8 @@ public sealed class LogMessage
     /// <returns>Название уровня лога.</returns>
     internal string GetLevel()
     {
-        return Level
-            .ToString()
-            .ToUpper()
-            .PadRight(5, ' ');
+        return $"[{Level}]".ToUpper()
+            .PadRight(7, ' ');
     }
 
     /// <summary>
@@ -92,15 +78,14 @@ public sealed class LogMessage
     internal string GetLog(string format)
     {
         try {
-            string[] formats = format.Split(';');
-
-            string timeFormat    = formats[0];
-            string messageFormat = formats[1];
-
-            if (string.IsNullOrEmpty(timeFormat))
-                return GetLogWithoutTime(messageFormat);
-
-            return GetLog(timeFormat, messageFormat);
+            return new StringBuilder().Append(string.Format(
+                format,
+                DateTime,
+                CallerFile,
+                CallerLine
+            ))
+            .Append(Message)
+            .ToString();
         }
         catch {
             throw new ArgumentException("Некорректная строка формата!");
@@ -108,31 +93,4 @@ public sealed class LogMessage
     }
 
     #endregion Internal Methods
-
-    #region Private Methods
-
-    private string GetLog(string timeFormat, string messageFormat)
-    {
-        return new StringBuilder().Append(string.Format(
-                messageFormat,
-                DateTime.ToString(timeFormat),
-                CallerFile,
-                CallerLine
-            ))
-            .Append(Message)
-            .ToString();
-    }
-
-    private string GetLogWithoutTime(string messageFormat)
-    {
-        return new StringBuilder().Append(string.Format(
-                messageFormat,
-                CallerFile,
-                CallerLine
-            ))
-            .Append(Message)
-            .ToString();
-    }
-
-    #endregion Private Methods
 }
