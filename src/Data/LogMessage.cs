@@ -1,4 +1,6 @@
-﻿using System.Text;
+﻿using System.Net.WebSockets;
+using System.Reflection;
+using System.Text;
 
 using OkoloIt.Utilities.Logging.Configuration;
 
@@ -9,6 +11,8 @@ namespace OkoloIt.Utilities.Logging.Data;
 /// </summary>
 public sealed class LogMessage
 {
+    private string _callerFile = string.Empty;
+
     #region Internal Constructors
 
     /// <summary>
@@ -30,7 +34,21 @@ public sealed class LogMessage
     /// <summary>
     /// Файл, в котором произошло обращение к логеру.
     /// </summary>
-    internal string CallerFile { get; init; } = string.Empty;
+    internal string CallerFile {
+        get => _callerFile;
+        init {
+            string product = Assembly.GetExecutingAssembly()
+                .GetCustomAttributes(typeof(AssemblyProductAttribute), true)
+                .OfType<AssemblyProductAttribute>()
+                .FirstOrDefault()?.Product ?? string.Empty;
+
+            var productFolder = value.Split(Path.DirectorySeparatorChar)
+                .SkipWhile(d => d.Equals(product) == false)
+                .ToArray();
+
+            _callerFile = Path.Combine(productFolder);
+        }
+    }
 
     /// <summary>
     /// Строка, в которой произошло обращение к логеру.
