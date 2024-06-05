@@ -12,7 +12,7 @@ public sealed class LogMessage
     #region Internal Constructors
 
     /// <summary>
-    /// Сохдает экземпляр данных лога.
+    /// Создает экземпляр данных лога.
     /// </summary>
     /// <param name="level">Уровень лога.</param>
     /// <param name="message">Сообщение.</param>
