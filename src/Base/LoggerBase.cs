@@ -20,7 +20,7 @@ public class LoggerBase
     /// <summary>
     /// Метод для вывода сообщения.
     /// </summary>
-    protected Action<string>? _action;
+    protected Action<LogLevel, string>? _action;
 
     #endregion Protected Fields
 
@@ -37,7 +37,7 @@ public class LoggerBase
     /// </summary>
     /// <param name="configurations">Конфигурация логера.</param>
     /// <param name="action">Метод для вывода сообщения.</param>
-    internal LoggerBase(LoggerConfiguration configurations, Action<string>? action)
+    internal LoggerBase(LoggerConfiguration configurations, Action<LogLevel, string>? action)
     {
         _configurations = configurations;
         _action = action;
@@ -90,20 +90,16 @@ public class LoggerBase
                 return;
 
             if (_configurations.Output.HasFlag(OutputTypes.Console))
-                    WriteInConsole(message);
+                WriteInConsole(message);
 
             if (_configurations.Output.HasFlag(OutputTypes.File))
-                    WriteInFile(message);
+                WriteInFile(message);
 
             if (_configurations.Output.HasFlag(OutputTypes.System))
-                    WriteInSystemTrace(message);
+                WriteInSystemTrace(message);
 
             if (_configurations.Output.HasFlag(OutputTypes.Custom))
-                    WriteInCustomMethod(message);
-                    return;
-                default:
-                    throw new NotImplementedException("Нет доступного метода для вывода сообщения.");
-            }
+                WriteInCustomMethod(message);
         }
     }
 
@@ -124,7 +120,7 @@ public class LoggerBase
     /// </summary>
     /// <param name="message">Сообщение.</param>
     protected virtual void WriteInCustomMethod(LogMessage message)
-        => _action?.Invoke($"{message.GetLevel()}{message.GetLog(_configurations.Format)}");
+        => _action?.Invoke(message.Level, message.GetLog(_configurations.Format));
 
     /// <summary>
     /// Записывает сообщение в файл.

@@ -1,4 +1,5 @@
-﻿using OkoloIt.Utilities.Logging.Configuration;
+﻿using OkoloIt.Utilities.Logging.Builders;
+using OkoloIt.Utilities.Logging.Configuration;
 
 namespace OkoloIt.Utilities.Logging;
 
@@ -10,7 +11,7 @@ public class LoggerBuilder : ILoggerBuilder
     #region Private Fields
 
     private LoggerConfiguration _configuration = new();
-    private Action<string>? _action;
+    private Action<LogLevel, string>? _action;
 
     #endregion Private Fields
 
@@ -84,7 +85,7 @@ public class LoggerBuilder : ILoggerBuilder
     }
 
     /// <inheritdoc/>
-    public ILoggerBuilder WriteToCustom(Action<string> action)
+    public ILoggerBuilder WriteToCustom(Action<LogLevel, string> action)
     {
         ArgumentNullException.ThrowIfNull(action);
 

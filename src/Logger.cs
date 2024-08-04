@@ -17,7 +17,7 @@ public class Logger : LoggerBase, ILogger
     /// </summary>
     /// <param name="configurations">Конфигурация логера.</param>
     /// <param name="action">Метод для вывода сообщения.</param>
-    internal Logger(LoggerConfiguration configurations, Action<string>? action)
+    internal Logger(LoggerConfiguration configurations, Action<LogLevel, string>? action)
         : base(configurations, action)
     {
     }

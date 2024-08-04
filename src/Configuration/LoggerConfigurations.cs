@@ -13,7 +13,7 @@ public record class LoggerConfiguration
     /// <summary>
     /// Путь вывода.
     /// </summary>
-    public OutputType Output { get; set; } = default;
+    public OutputTypes Output { get; set; } = default;
 
     /// <summary>
     /// Использовать асинхронную запись.
