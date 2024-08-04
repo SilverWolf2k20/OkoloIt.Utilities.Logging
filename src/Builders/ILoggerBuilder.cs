@@ -1,6 +1,6 @@
 ﻿using OkoloIt.Utilities.Logging.Configuration;
 
-namespace OkoloIt.Utilities.Logging;
+namespace OkoloIt.Utilities.Logging.Builders;
 
 /// <summary>
 /// Интерфейс строителя логера.
@@ -73,7 +73,7 @@ public interface ILoggerBuilder
     /// <returns>
     /// Экземпляр строителя, наследуемого от <see cref="ILoggerBuilder"/>.
     /// </returns>
-    public ILoggerBuilder WriteToCustom(Action<string> action);
+    public ILoggerBuilder WriteToCustom(Action<LogLevel, string> action);
 
     /// <summary>
     /// Устанавливает вывод сообщений в файл.
