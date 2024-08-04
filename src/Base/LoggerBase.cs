@@ -89,17 +89,16 @@ public class LoggerBase
             if (IsVisibleMessage(message.Level) == false)
                 return;
 
-            switch (_configurations.Output) {
-                case OutputType.Console:
+            if (_configurations.Output.HasFlag(OutputTypes.Console))
                     WriteInConsole(message);
-                    return;
-                case OutputType.File:
+
+            if (_configurations.Output.HasFlag(OutputTypes.File))
                     WriteInFile(message);
-                    return;
-                case OutputType.System:
+
+            if (_configurations.Output.HasFlag(OutputTypes.System))
                     WriteInSystemTrace(message);
-                    return;
-                case OutputType.Custom:
+
+            if (_configurations.Output.HasFlag(OutputTypes.Custom))
                     WriteInCustomMethod(message);
                     return;
                 default:

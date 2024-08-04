@@ -36,7 +36,7 @@ public class LoggerBuilder : ILoggerBuilder
 
         LoggerManager.CurrentLogger = logger;
 
-        if (_configuration.Output == OutputType.File)
+        if (_configuration.Output == OutputTypes.File)
             RewriteFile();
 
         return logger;
@@ -79,7 +79,7 @@ public class LoggerBuilder : ILoggerBuilder
     /// <inheritdoc/>
     public ILoggerBuilder WriteToConsole()
     {
-        _configuration.Output = OutputType.Console;
+        _configuration.Output |= OutputTypes.Console;
         return this;
     }
 
@@ -88,7 +88,7 @@ public class LoggerBuilder : ILoggerBuilder
     {
         ArgumentNullException.ThrowIfNull(action);
 
-        _configuration.Output = OutputType.Custom;
+        _configuration.Output |= OutputTypes.Custom;
         _action = action;
         return this;
     }
@@ -98,7 +98,7 @@ public class LoggerBuilder : ILoggerBuilder
     {
         ArgumentNullException.ThrowIfNull(fileName);
 
-        _configuration.Output = OutputType.File;
+        _configuration.Output |= OutputTypes.File;
 
         if (string.IsNullOrEmpty(fileName) == false)
             _configuration.FileName  = fileName;
@@ -109,7 +109,7 @@ public class LoggerBuilder : ILoggerBuilder
     /// <inheritdoc/>
     public ILoggerBuilder WriteToSystemTrace()
     {
-        _configuration.Output = OutputType.System;
+        _configuration.Output |= OutputTypes.System;
         return this;
     }
 

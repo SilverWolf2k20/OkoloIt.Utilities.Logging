@@ -3,25 +3,31 @@
 /// <summary>
 /// Тип вывода сообщений.
 /// </summary>
-public enum OutputType : byte
+[Flags]
+public enum OutputTypes : byte
 {
     /// <summary>
-    /// Вывод в файл.
+    /// Не выводить.
     /// </summary>
-    File,
+    None = 0x00,
 
     /// <summary>
     /// Вывод в консоль.
     /// </summary>
-    Console,
+    Console = 0x01,
+
+    /// <summary>
+    /// Вывод в файл.
+    /// </summary>
+    File = 0x02,
 
     /// <summary>
     /// Вывод в системную консоль.
     /// </summary>
-    System,
+    System = 0x04,
 
     /// <summary>
     /// Пользовательский вывод.
     /// </summary>
-    Custom,
+    Custom = 0x08,
 }
