@@ -6,7 +6,7 @@
 public enum LogLevel : byte
 {
     /// <summary>
-    /// Трасировка.
+    /// Трассировка.
     /// </summary>
     Trace,
 
@@ -21,7 +21,7 @@ public enum LogLevel : byte
     Info,
 
     /// <summary>
-    /// Предумпреждение.
+    /// Предупреждение.
     /// </summary>
     Warn,
 
