@@ -9,6 +9,16 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OkoloIt.Utilities.Logging.E
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OkoloIt.Utilities.Logging.Samples", "samples\OkoloIt.Utilities.Logging.Samples.csproj", "{AFA81D64-EB45-4C98-863F-767A27997EA6}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{B82976CB-CCD5-4732-836B-33A59A98205B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{2542573C-A529-4F35-B347-907C4B4D0F32}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "git", "git", "{96E26493-8DD5-4CB7-87FE-585ED5206101}"
+	ProjectSection(SolutionItems) = preProject
+		LICENSE.md = LICENSE.md
+		README.md = README.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,6 +40,11 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{67932FA8-C675-4A1B-A4A8-506F3E9B2D83} = {B82976CB-CCD5-4732-836B-33A59A98205B}
+		{5267A8E1-D5CA-40CE-A5A9-4C23F4653085} = {B82976CB-CCD5-4732-836B-33A59A98205B}
+		{AFA81D64-EB45-4C98-863F-767A27997EA6} = {2542573C-A529-4F35-B347-907C4B4D0F32}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A0F4564C-7BFA-4706-BE8C-32F0B84202B8}
