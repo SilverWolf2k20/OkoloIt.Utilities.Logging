@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="8.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\src\OkoloIt.Utilities.Logging.Extensions.Logging\OkoloIt.Utilities.Logging.Extensions.Logging.csproj" />
+    <ProjectReference Include="..\src\OkoloIt.Utilities.Logging\OkoloIt.Utilities.Logging.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -13,7 +13,7 @@ internal abstract class WriterSample
     /// <summary>
     /// Выполняет работу.
     /// </summary>
-    protected internal void Work()
+    protected internal virtual void Work()
     {
         ILogger logger = LoggerManager.CurrentLogger;
 

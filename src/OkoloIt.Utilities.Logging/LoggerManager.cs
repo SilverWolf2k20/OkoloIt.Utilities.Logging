@@ -23,5 +23,10 @@ public sealed class LoggerManager
         set => _logger = value;
     }
 
+    /// <summary>
+    /// Текущая настройка логгера.
+    /// </summary>
+    public static LoggerConfiguration? CurrentConfiguration { get; internal set; }
+
     #endregion Public Properties
 }

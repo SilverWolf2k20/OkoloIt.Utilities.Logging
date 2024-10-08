@@ -8,8 +8,10 @@ sample = new WriteToConsoleSample();
 sample = new WriteToCustomMethodSample();
 #elif FILE_MODE
 sample = new WriteToFileSample();
-#else
+#elif SYSTEM_MODE
 sample = new WriteToSystemTraceSample();
+#else
+sample = new UseDependencyInjection();
 #endif
 
 sample.InitializationLogger();

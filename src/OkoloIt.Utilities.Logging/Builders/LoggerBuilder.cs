@@ -35,6 +35,7 @@ public class LoggerBuilder : ILoggerBuilder
         else
             logger = new Logger(_configuration, _action);
 
+        LoggerManager.CurrentConfiguration = _configuration;
         LoggerManager.CurrentLogger = logger;
 
         if (_configuration.Output == OutputTypes.File)
